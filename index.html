@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Group Project 1</title>
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css" media="screen,projection" />
   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
@@ -27,10 +27,23 @@
         </section>
       </section>
       <section id="pastSearches">
+        <h3>Past Searches</h3>
+        <ul id="searchItems">
 
+        </ul>
       </section>
       <section id="suggestedRestaurants">
+        <h4>Suggested Restaurants:</h4>
+            <select class="browser-default">
+              <option value="" disabled selected>Sort By:</option>
+              <option value="1">Rating</option>
+              <option value="2">Distance</option>
+              <option value="3">Currently Open</option>
+              <option value="4">Cost</option>
+            </select>
+        <ul id="restaurantList">
 
+        </ul>
       </section>
     </section>
     <section class="rightSide">
@@ -48,8 +61,8 @@
 
     </section>
   </main>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-  <script src="assets/js/script.js"></script>
+  <script type="text/javascript" src="./assets/js/materialize.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
