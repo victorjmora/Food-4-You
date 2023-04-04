@@ -20,7 +20,7 @@ setBoundaries();
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '44996f06a7msh44753405c1debc3p124047jsnb848e1d46696',
+        'X-RapidAPI-Key': '00451271c5msh859a5b59f2aef48p18bfdbjsne1104a5da14d',
         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
    }
 };
