@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Project 1</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./assets/css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Group Project 1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css" media="screen,projection" />
-  <link rel="stylesheet" href="./assets/css/style.css"/>
-</head>
+  <body>
+    <header class="amber center-align">
+      <h1>Food4You</h1>
+      <h3>Finding food easier than ever</h3>
+    </header>
 
-<body>
-  <header class="amber center-align">
-    <h1>Food4You</h1>
-    <h3>Finding food easier than ever</h3>
-  </header>
     <main>
- 
-
-   
       <section class="box amber darken-1">
-
         <section class="row amber">
           <div class="col s3 amber lighten-1 input-field">
-            <h4  id="zip">Enter a Zipcode</h4>
-            <input id="input_text" type="text" placeholder="Zipcode" data-length="14" />
-           </div>
+            <h4 id="zip">Enter a Zipcode</h4>
+            <input
+              id="input_text"
+              type="text"
+              placeholder="Zipcode"
+              data-length="14"
+            />
+          </div>
 
           <div class="col s3 amber lighten-1">
             <h4 id="foodType">Select Food Type:</h4>
@@ -36,15 +45,13 @@
               <option value="3">Food 3</option>
             </select>
           </div>
-
-        </section> <!--Food and Zip contain-->
+        </section>
+        <!--Food and Zip contain-->
 
         <section class="row">
           <div class="col s3 amber" id="pastSearches">
             <h4>Past Searches</h4>
-            <ul id="searchItems">
-
-            </ul>
+            <ul id="searchItems"></ul>
           </div>
 
           <div class="col s3 amber lighten-1" id="suggested">
@@ -57,29 +64,23 @@
               <option value="4">Cost</option>
             </select>
           </div>
-
-        </section> <!--Search/suggested contain-->
-
-      </section> <!--Left side contain end-->
-       
-         
-    <section class="rightSide amber darken-2">
-      <section id="map" class="row">
-        <section class="col s2 amber lighten-1">
-
         </section>
-        <section class="col s6 amber lighten-2">
+        <!--Search/suggested contain-->
+      </section>
+      <!--Left side contain end-->
 
+      <section class="rightSide amber darken-2">
+        <section id="map" class="row">
+          <section class="col s2 amber lighten-1"></section>
+          <section class="col s6 amber lighten-2"></section>
         </section>
+        <section id="apiInfo" class="amber"></section>
       </section>
-      <section id="apiInfo" class="amber">
-
-      </section>
- 
-    </section>
-  </main>
-  <script type="text/javascript" src="./assets/js/materialize.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-
+    </main>
+    <script
+      type="text/javascript"
+      src="./assets/js/materialize.min.js"
+    ></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
