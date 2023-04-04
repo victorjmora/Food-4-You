@@ -7,4 +7,5 @@ body, option {
 select {
     font-family: 'Alkatra', cursive;
     color: green;
+    width: 200px;
 }
