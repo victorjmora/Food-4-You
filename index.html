@@ -18,7 +18,7 @@
     <main>
  
 
-    <section class="leftSide amber darken-2">
+   
       <section class="box amber darken-1">
 
         <section class="row amber">
@@ -40,18 +40,29 @@
         </section> <!--Food and Zip contain-->
 
         <section class="row">
-          
-          <h4 class="col s3 amber" id="pastSearches">Past Searches</h4>
-          <h4 class="col s3 amber lighten-1" id="suggested">Suggested Restaurants</h4>
-        </section>
-      </section>
+          <div class="col s3 amber" id="pastSearches">
+            <h4>Past Searches</h4>
+            <ul id="searchItems">
 
-      
-      <section  class="amber darken-1">
+            </ul>
+          </div>
 
-   
-      </section>
-    </section>
+          <div class="col s3 amber lighten-1" id="suggested">
+            <h4>Suggested Restaurants</h4>
+            <select class="browser-default">
+              <option value="" disabled selected>Sort By:</option>
+              <option value="1">Rating</option>
+              <option value="2">Distance</option>
+              <option value="3">Currently Open</option>
+              <option value="4">Cost</option>
+            </select>
+          </div>
+
+        </section> <!--Search/suggested contain-->
+
+      </section> <!--Left side contain end-->
+       
+         
     <section class="rightSide amber darken-2">
       <section id="map" class="row">
         <section class="col s2 amber lighten-1">
@@ -68,7 +79,7 @@
     </section>
   </main>
   <script type="text/javascript" src="./assets/js/materialize.min.js"></script>
-  <script src="assets/js/script.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
