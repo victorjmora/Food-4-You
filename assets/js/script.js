@@ -1,4 +1,4 @@
-var link = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude=38.961178&tr_latitude=40.961178&bl_longitude=-81.998795&tr_longitude=-83.998795&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=km&lang=en_US'
+var link = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude=11.847676&tr_latitude=12.838442&bl_longitude=109.095887&tr_longitude=109.149359&limit=30&currency=USD&lunit=km&lang=en_US'
 var minLatitude = 'bl_latitide=0';
 var maxLatitude = 'tr_latitude=0';
 var minLongitude = 'bl_longitude=0';
@@ -6,16 +6,26 @@ var maxLongitude = 'tr_longitude=0';
 var info = [];
 
 //Fetch Travel Advisor API. If the key isn't working you might have to replace it with a new one
+function setPosition(position) {
+    minLatitude = `bl_latitude=${position.coords.latitude - 1}`;
+    maxLatitude = `tr_latitude=${position.coords.latitude + 1}`;
+    minLongitude = `bl_longitude=${position.coords.longitude - 1}`;
+    maxLongitude = `tr_longitude=${position.coords.longitude + 1}`;
+    link = `https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?${minLatitude}&${maxLatitude}&${minLongitude}&${maxLongitude}&limit=30&currency=USD&lunit=km&lang=en_US`
+    storeInfo();
+}
+
+setBoundaries();
+
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': 'a4cfa7f01amshdeb32e9825e2762p117943jsn415fa2499866',
+        'X-RapidAPI-Key': '44996f06a7msh44753405c1debc3p124047jsnb848e1d46696',
         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
    }
 };
 
 fetch(link, options)
-    .then(response => response.json())
     .catch(err => console.error(err));
 ///////////////////////////////////////////////////////////////
 
@@ -26,18 +36,6 @@ function setBoundaries() {
     } else {
         return '0';
     }
-}
-
-function setPosition(position) {
-    minLatitude = `bl_latitude=${position.coords.latitude - 1}`;
-    maxLatitude = `tr_latitude=${position.coords.latitude + 1}`;
-    minLongitude = `bl_longitude=${position.coords.longitude - 1}`;
-    maxLongitude = `tr_longitude=${max2 = position.coords.longitude + 1}`;
-    console.log(minLatitude, maxLatitude, minLongitude, maxLongitude);
-}
-
-function fetchLink() {
-    link = `https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?${minLatitude}&${maxLatitude}&${minLongitude}&${maxLongitude}&restaurant_tagcategory_standalone=10591&restaurant_tagcategory=10591&limit=30&currency=USD&open_now=false&lunit=km&lang=en_US`
 }
 //////////////////////////////////////////////////////////////////////////
 
@@ -50,5 +48,3 @@ async function storeInfo() {
 ///////////////////////////////////////////////////////////////
 
 //Attach to an event listener when the user submits current location. Currently only has a boundary of 2x2 degrees and is not customizable yet. Might use slider to adjust bounds.
-setBoundaries();
-storeInfo();
