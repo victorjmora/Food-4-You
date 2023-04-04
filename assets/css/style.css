@@ -1,0 +1,10 @@
+body, option {
+  font-family: 'Alkatra', cursive;
+}
+
+
+
+select {
+    font-family: 'Alkatra', cursive;
+    color: green;
+}
