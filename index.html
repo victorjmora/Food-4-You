@@ -19,27 +19,25 @@
 
   <body>
     <header class="amber center-align">
-      <h1>Food4You</h1>
+      <h1>Food and stuff</h1>
       <h3>Finding food easier than ever</h3>
     </header>
 
     <main>
+      <section class="row amber">
+        <div class="col s3">
+          <h4 id="zip">Enter a Zipcode</h4>
+          <input
+            id="input_text"
+            type="text"
+            placeholder="Zipcode"
+            data-length="14"
+          />
 
-
- 
-        <section class="row amber">
-          <div class="col s3">
-            <h4 id="zip">Enter a Zipcode</h4>
-            <input
-              id="input_text"
-              type="text"
-              placeholder="Zipcode"
-              data-length="14"
-            />
-
-            <div class="col s3 amber" id="pastSearches">
+          <div class="row amber" id="pastSearches">
+            <section class="col s6">
               <h4>Past Searches</h4>
-              <ul id="searchItems">
+              <ul>
                 <li>test</li>
                 <li>test</li>
                 <li>test</li>
@@ -47,47 +45,64 @@
                 <li>test</li>
                 <li>test</li>
               </ul>
-            </div>
+            </section>
+            <section class="col s6">
+              <h4>Suggested</h4>
+              <ul>
+                <li>test</li>
+                <li>test</li>
+                <li>test</li>
+                <li>test</li>
+                <li>test</li>
+              </ul>
+            </section>
           </div>
+        </div>
 
-          <div class="col s3">
-            <h4 id="foodType">Select Cuisine:</h4>
-            <select class="browser-default">
-              <option value="" disabled selected>Select Cuisine</option>
-              <option value="1">American</option>
-              <option value="2">Indian</option>
-              <option value="3">Mexican</option>
-            </select>
+        <div class="col s3">
+          <h4 id="foodType">Select Options:</h4>
+          <select class="browser-default">
+            <option value="" disabled selected>Select Cuisine</option>
+            <option value="1">American</option>
+            <option value="2">Indian</option>
+            <option value="3">Mexican</option>
+          </select>
+          <br />
+          <select class="browser-default">
+            <option value="" disabled selected>Sort By:</option>
+            <option value="1">Rating</option>
+            <option value="2">Distance</option>
+            <option value="3">Currently Open</option>
+            <option value="4">Cost</option>
+          </select>
+        </div>
 
-            <div class="col s3" id="suggested">
-              <h4>Suggested Restaurants</h4>
-              <select class="browser-default">
-                <option value="" disabled selected>Sort By:</option>
-                <option value="1">Rating</option>
-                <option value="2">Distance</option>
-                <option value="3">Currently Open</option>
-                <option value="4">Cost</option>
-              </select>
-            </div>
-          </div>
-
-          <!--Information Block-->
-          <section class= "col s6">
-            <h1>map</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eligendi, fugiat possimus quasi mollitia quam ipsum aliquam placeat cum architecto obcaecati voluptates? Quisquam suscipit debitis a veniam asperiores mollitia temporibus!
-            Odio saepe sed, alias dolorem, pariatur aliquid culpa ullam voluptates amet, quas soluta! Rem, natus sapiente veniam totam vitae molestias, nam iste quisquam nesciunt id quam reiciendis, laboriosam quis quasi!
-            Molestias eligendi magni aspernatur provident, laborum inventore laboriosam deserunt quidem incidunt assumenda delectus doloremque corrupti impedit quos, sint distinctio facilis similique nisi alias. Debitis at, laborum nemo tenetur quaerat quam.
-            Illo delectus tenetur nesciunt! Nemo autem incidunt beatae iure sequi dolorum eligendi sed consequatur reprehenderit unde harum ullam mollitia, fugiat quibusdam facilis, soluta blanditiis at ipsa modi impedit temporibus commodi.
-            Modi, id libero. Commodi tempore temporibus quas ab repudiandae ipsam est perferendis rerum sequi debitis! A ea error dolorem, iste officiis, quae amet, corrupti repudiandae molestias itaque quas vero excepturi.</p>
-          </section>
-
-          
-    
-        
-        </section> <!--Main contain-->
-
-   
-      
+        <!--Information Block-->
+        <section class="col s6">
+          <h1>map</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+            eligendi, fugiat possimus quasi mollitia quam ipsum aliquam placeat
+            cum architecto obcaecati voluptates? Quisquam suscipit debitis a
+            veniam asperiores mollitia temporibus! Odio saepe sed, alias
+            dolorem, pariatur aliquid culpa ullam voluptates amet, quas soluta!
+            Rem, natus sapiente veniam totam vitae molestias, nam iste quisquam
+            nesciunt id quam reiciendis, laboriosam quis quasi! Molestias
+            eligendi magni aspernatur provident, laborum inventore laboriosam
+            deserunt quidem incidunt assumenda delectus doloremque corrupti
+            impedit quos, sint distinctio facilis similique nisi alias. Debitis
+            at, laborum nemo tenetur quaerat quam. Illo delectus tenetur
+            nesciunt! Nemo autem incidunt beatae iure sequi dolorum eligendi sed
+            consequatur reprehenderit unde harum ullam mollitia, fugiat
+            quibusdam facilis, soluta blanditiis at ipsa modi impedit temporibus
+            commodi. Modi, id libero. Commodi tempore temporibus quas ab
+            repudiandae ipsam est perferendis rerum sequi debitis! A ea error
+            dolorem, iste officiis, quae amet, corrupti repudiandae molestias
+            itaque quas vero excepturi.
+          </p>
+        </section>
+      </section>
+      <!--Main Row-->
     </main>
     <script
       type="text/javascript"
