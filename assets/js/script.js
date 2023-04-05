@@ -26,7 +26,6 @@ const options = {
    }
 };
 
-//ADD THIS TO EVENT LISTENER TO GET DATA
 function fetchAPI() {
     fetch(link, options)
         .catch(err => console.error(err));
@@ -40,7 +39,6 @@ function setBoundaries() {
         return '0';
     }
 }
-//////////////////////////////////////////////////////////////////////////
 
 //Stores API info in the 'info' variable in order to manipulate
 async function storeInfo() {
@@ -64,10 +62,5 @@ async function storeInfo() {
     }
     console.log(restaurants);
 };
-//Will need constructor in order to create an object for each restaurant with the relevant info
-///////////////////////////////////////////////////////////////
 
 //Attach to an event listener when the user submits current location. Currently only has a boundary of 2x2 degrees and is not customizable yet. Might use slider to adjust bounds.
-[1, 1, 2, 3, 1, 4, 5]
-
-[1, 1, 1]
