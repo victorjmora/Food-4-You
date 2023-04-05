@@ -4,6 +4,7 @@ var maxLatitude = 'tr_latitude=0';
 var minLongitude = 'bl_longitude=0';
 var maxLongitude = 'tr_longitude=0';
 var info = [];
+var restaurants = [];
 
 //Fetch Travel Advisor API. If the key isn't working you might have to replace it with a new one
 function setPosition(position) {
@@ -25,9 +26,11 @@ const options = {
    }
 };
 
-fetch(link, options)
-    .catch(err => console.error(err));
-///////////////////////////////////////////////////////////////
+//ADD THIS TO EVENT LISTENER TO GET DATA
+function fetchAPI() {
+    fetch(link, options)
+        .catch(err => console.error(err));
+}
 
 //Sets up a square boundary based on user's current latitude and longitude and adds it to the link
 function setBoundaries() {
@@ -41,10 +44,30 @@ function setBoundaries() {
 
 //Stores API info in the 'info' variable in order to manipulate
 async function storeInfo() {
-    info = await fetch(link, options).then(response => response.json());
-    console.log(info);
-    //Will need constructor in order to create an object for each restaurant with the relevant info
-}
+    info = await fetch(link, options).then(response => response.json())
+    for(let i = 0; i < info.data.length; i++) {
+        function Restaurant() {
+            this.name = info.data[i].name;
+            this.rating = info.data[i].rating;
+            this.address = info.data[i].address;
+            this.priceLevel = info.data[i].price_level;
+            this.website = info.data[i].website;
+            this.isClosed = info.data[i].is_closed;
+            this.cuisine = info.data[i].cuisine;
+            this.description = info.data[i].description;
+            this.images = info.data[i].photo;
+        }
+        var user = new Restaurant();
+        if(user.name != undefined) {
+            restaurants.push(user);
+        }
+    }
+    console.log(restaurants);
+};
+//Will need constructor in order to create an object for each restaurant with the relevant info
 ///////////////////////////////////////////////////////////////
 
 //Attach to an event listener when the user submits current location. Currently only has a boundary of 2x2 degrees and is not customizable yet. Might use slider to adjust bounds.
+[1, 1, 2, 3, 1, 4, 5]
+
+[1, 1, 1]
