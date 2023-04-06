@@ -40,10 +40,6 @@
               <ul>
                 <li>test</li>
                 <li>test</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
               </ul>
             </section>
             <section class="col s6">
@@ -70,14 +66,34 @@
           <br />
           <select class="browser-default">
             <option value="" disabled selected>Sort By:</option>
-            <option value="1">Rating</option>
-            <option value="2">Distance</option>
-            <option value="3">Cost</option>
+            <option value="1">Rating:</option>
+            <option value="2">Distance:</option>
+            <option value="3">Cost:</option>
           </select>
+
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal1"
+            >Restaurant Name</a
+          >
+
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Restaurant Name</h4>
+              <p>Rating:<span id="rate"></span></p>
+              <p>Cuisine:<span id="cuisine"></span></p>
+              <p>Price:<span id="price"></span></p>
+              <p>Description:<span id="description"></span></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+                >OK</a
+              >
+            </div>
+          </div>
         </div>
 
         <!--Information Block-->
-        <section class="col s6">
+        <section class="col s6" id="map-block">
           <h1>map</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
