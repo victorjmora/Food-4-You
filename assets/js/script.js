@@ -50,5 +50,10 @@ async function storeInfo() {
 ///////////////////////////////////////////////////////////////
 
 //Attach to an event listener when the user submits current location. Currently only has a boundary of 2x2 degrees and is not customizable yet. Might use slider to adjust bounds.
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+  });
+
 setBoundaries();
 storeInfo();
