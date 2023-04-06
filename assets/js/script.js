@@ -28,6 +28,7 @@ const options = {
 
 function fetchAPI() {
     fetch(link, options)
+        .then(response => response.json())
         .catch(err => console.error(err));
 }
 
@@ -43,24 +44,38 @@ function setBoundaries() {
 //Stores API info in the 'info' variable in order to manipulate
 async function storeInfo() {
     info = await fetch(link, options).then(response => response.json())
-    for(let i = 0; i < info.data.length; i++) {
-        function Restaurant() {
-            this.name = info.data[i].name;
-            this.rating = info.data[i].rating;
-            this.address = info.data[i].address;
-            this.priceLevel = info.data[i].price_level;
-            this.website = info.data[i].website;
-            this.isClosed = info.data[i].is_closed;
-            this.cuisine = info.data[i].cuisine;
-            this.description = info.data[i].description;
-            this.images = info.data[i].photo;
-        }
-        var user = new Restaurant();
-        if(user.name != undefined) {
-            restaurants.push(user);
+    for(var i = 0; i < info.data.length; i++) {
+        if(info.data[i].cuisine != undefined) {
+            var cuisine = info.data[i].cuisine;
+            for (var j = 0; j < cuisine.length; j++) {
+                if (cuisine[j].name == 'Italian') {
+                    function Restaurant() {
+                        this.name = info.data[i].name;
+                        this.rating = info.data[i].rating;
+                        this.address = info.data[i].address;
+                        this.priceLevel = info.data[i].price_level;
+                        this.website = info.data[i].website;
+                        this.isClosed = info.data[i].is_closed;
+                        this.cuisine = info.data[i].cuisine;
+                        this.description = info.data[i].description;
+                        this.images = info.data[i].photo;
+                        this.distance = info.data[i].distance;
+                        this.cuisine = info.data[i].cuisine;
+                    }
+                    var user = new Restaurant();
+                    if (user.name != undefined) {
+                        restaurants.push(user);
+                    }
+                }
+            }
         }
     }
     console.log(restaurants);
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+});
 
 //Attach to an event listener when the user submits current location. Currently only has a boundary of 2x2 degrees and is not customizable yet. Might use slider to adjust bounds.
