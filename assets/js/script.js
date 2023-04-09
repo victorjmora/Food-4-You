@@ -4,7 +4,7 @@ var maxLatitude = 'tr_latitude=0';
 var minLongitude = 'bl_longitude=0';
 var maxLongitude = 'tr_longitude=0';
 var info = [];
-var restaurants = [];
+var restaurantsList = [];
 var zipcode = 0;
 var cuisineOptions = ['Anything', 'Asian', 'American', 'Italian', 'Mexican']
 var cuisineChoice = cuisineOptions[0];
@@ -29,17 +29,19 @@ var submitButton = document.getElementById('submit-button');
 submitButton.addEventListener('click', submitInput);
 
 function submitInput() {
+    restaurantsList = [];
     zipcode = document.getElementById('input_text').value;
     var value = document.getElementById('test').value;
     cuisineChoice = cuisineOptions[value];
     console.log(cuisineChoice)
     console.log(zipcode)
+    storeInfo();
 }
 
 //Sets up a square boundary based on user's current latitude and longitude and adds it to the link
 function setBoundaries() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setPosition);
+        navigator.geolocation.getCurrentPosition(setPositionCurrent);
     } else {
         return '0';
     }
@@ -82,7 +84,7 @@ async function storeInfo() {
         if(info.data[i].cuisine != undefined) {
             var cuisine = info.data[i].cuisine;
             for (var j = 0; j < cuisine.length; j++) {
-                if (cuisine[j].name == 'Italian') {
+                if (cuisine[j].name == cuisineChoice || 'Anything' == cuisineChoice) {
                     function Restaurant() {
                         this.name = info.data[i].name;
                         this.rating = info.data[i].rating;
@@ -96,15 +98,15 @@ async function storeInfo() {
                         this.distance = info.data[i].distance;
                         this.cuisine = info.data[i].cuisine;
                     }
-                    var user = new Restaurant();
-                    if (user.name != undefined) {
-                        restaurants.push(user);
+                    var restaurant = new Restaurant();
+                    if (restaurant.name != undefined) {
+                        restaurantsList.push(restaurant);
                     }
                 }
             }
         }
     }
-    console.log(restaurants);
+    console.log(restaurantsList);
 };
 
 //Creates a modal for displaying each of the Restaurant objects
@@ -115,5 +117,6 @@ function createModals() {
     });
 }
 
+setBoundaries();
 
 
