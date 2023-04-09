@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Group Project 1</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap"
       rel="stylesheet"
@@ -14,7 +15,7 @@
       href="./assets/css/materialize.min.css"
       media="screen,projection"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
 
   <body>
@@ -33,7 +34,7 @@
             placeholder="Zipcode"
             data-length="14"
           />
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
           </button>
 
           <div class="row amber" id="pastSearches">
@@ -59,11 +60,13 @@
 
         <div class="col s3">
           <h4 id="foodType">Select Options:</h4>
-          <select class="browser-default">
+          <select id="test" class="browser-default">
             <option value="" disabled selected>Select Cuisine</option>
-            <option value="1">American</option>
-            <option value="2">Indian</option>
-            <option value="3">Mexican</option>
+            <option value="0">Anything</option>
+            <option value="1">Asian</option>
+            <option value="2">American</option>
+            <option value="3">Italian</option>
+            <option value="4">Mexican</option>
           </select>
           <br />
           <select class="browser-default">
@@ -96,27 +99,10 @@
 
         <!--Information Block-->
         <section class="col s6" id="map-block">
-          <h1>map</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-            eligendi, fugiat possimus quasi mollitia quam ipsum aliquam placeat
-            cum architecto obcaecati voluptates? Quisquam suscipit debitis a
-            veniam asperiores mollitia temporibus! Odio saepe sed, alias
-            dolorem, pariatur aliquid culpa ullam voluptates amet, quas soluta!
-            Rem, natus sapiente veniam totam vitae molestias, nam iste quisquam
-            nesciunt id quam reiciendis, laboriosam quis quasi! Molestias
-            eligendi magni aspernatur provident, laborum inventore laboriosam
-            deserunt quidem incidunt assumenda delectus doloremque corrupti
-            impedit quos, sint distinctio facilis similique nisi alias. Debitis
-            at, laborum nemo tenetur quaerat quam. Illo delectus tenetur
-            nesciunt! Nemo autem incidunt beatae iure sequi dolorum eligendi sed
-            consequatur reprehenderit unde harum ullam mollitia, fugiat
-            quibusdam facilis, soluta blanditiis at ipsa modi impedit temporibus
-            commodi. Modi, id libero. Commodi tempore temporibus quas ab
-            repudiandae ipsam est perferendis rerum sequi debitis! A ea error
-            dolorem, iste officiis.
-          </p>
         </section>
+        <div id="map"></div>
+        <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+            ({ key: "AIzaSyCUc6kkb6pfwBFDY7vYlskBg7jBorAucxo", v: "weekly" });</script>
       </section>
       <!--Main Row-->
     </main>
