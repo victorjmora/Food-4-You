@@ -8,8 +8,11 @@ var restaurantsList = [];
 var zipcode = 0;
 var cuisineOptions = ['Anything', 'Asian', 'American', 'Italian', 'Mexican']
 var cuisineChoice = cuisineOptions[0];
+var lastSearch = 0;
 
 let map;
+
+
 
 //Creates the map
 async function initMap() {
@@ -33,8 +36,6 @@ function submitInput() {
     zipcode = document.getElementById('input_text').value;
     var value = document.getElementById('test').value;
     cuisineChoice = cuisineOptions[value];
-    console.log(cuisineChoice)
-    console.log(zipcode)
     storeInfo();
 }
 
@@ -59,14 +60,13 @@ function setPositionCurrent(position) {
     minLongitude = `bl_longitude=${position.coords.longitude - 1}`;
     maxLongitude = `tr_longitude=${position.coords.longitude + 1}`;
     link = `https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?${minLatitude}&${maxLatitude}&${minLongitude}&${maxLongitude}&limit=30&currency=USD&lunit=km&lang=en_US`
-    storeInfo();
 }
 
 //Fetch Travel Advisor API. If the key isn't working you might have to replace it with a new one
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '44996f06a7msh44753405c1debc3p124047jsnb848e1d46696',
+        'X-RapidAPI-Key': '14d736a9c0msh4f4b723e2123446p1046fcjsnfe7ad3e482fc',
         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
    }
 };
@@ -83,6 +83,7 @@ async function storeInfo() {
     for(var i = 0; i < info.data.length; i++) {
         if(info.data[i].cuisine != undefined) {
             var cuisine = info.data[i].cuisine;
+            var results = document.getElementById('sugggested');
             for (var j = 0; j < cuisine.length; j++) {
                 if (cuisine[j].name == cuisineChoice || 'Anything' == cuisineChoice) {
                     function Restaurant() {
@@ -106,8 +107,20 @@ async function storeInfo() {
             }
         }
     }
-    console.log(restaurantsList);
+    displayNames();
+    lastSearch = restaurantsList.length;
 };
+
+//Displays the restaurant names in the 'Suggested' list
+function displayNames() {
+    var ul = document.getElementById('suggested');
+    ul.innerHTML = '';
+    for (let i = 0; i < restaurantsList.length; i++) {
+        var li = document.createElement('li');
+        li.innerHTML = restaurantsList[i].name;
+        ul.appendChild(li);
+    }
+}
 
 //Creates a modal for displaying each of the Restaurant objects
 function createModals() {
