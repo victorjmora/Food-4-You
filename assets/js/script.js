@@ -8,8 +8,8 @@ var restaurantsList = [];
 var zipcode = 0;
 var cuisineOptions = ['Anything', 'Asian', 'American', 'Italian', 'Mexican']
 var cuisineChoice = cuisineOptions[0];
+var cuisineList = [];
 var cuisine = [];
-var current = '';
 
 let map;
 
@@ -27,9 +27,9 @@ async function initMap() {
 
 //Adds an event listener to the button so that it can collect user input and use it to customize the fetch request
 var submitButton = document.getElementById('submit-button');
-
 submitButton.addEventListener('click', submitInput);
 
+//Collects user data to filter restaurants
 function submitInput() {
     restaurantsList = [];
     zipcode = document.getElementById('input_text').value;
@@ -83,6 +83,7 @@ async function storeInfo() {
                 this.website = info.data[i].website;
                 this.isClosed = info.data[i].is_closed;
                 this.cuisine = info.data[i].cuisine;
+                this.cuisineList = [];
                 this.description = info.data[i].description;
                 this.images = info.data[i].photo.images.original.url;
                 this.distance = info.data[i].distance;
@@ -96,20 +97,20 @@ async function storeInfo() {
         } else if (info.data[i].cuisine != undefined) {
             cuisine = info.data[i].cuisine;
             for (var j = 0; j < cuisine.length; j++) {
+                var restaurant = new Restaurant;
                 if (cuisine[j].name == cuisineChoice) {
-                    var restaurant = new Restaurant;
                     if (restaurant.name != undefined) {
                         restaurantsList.push(restaurant);
                     }
-                }
+                } 
             }
         }
     }
     displayNames();
-    console.log(info.data);
+    console.log(restaurantsList);
 };
 
-//Creates a modal for displaying each of the Restaurant objects
+//Creates a modal for displaying each of the Restaurant objects and enters the data from the API
 function createModals(i) {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
@@ -119,21 +120,30 @@ function createModals(i) {
     image.style.height = '300px';
     document.getElementById('rating').innerHTML = restaurantsList[i].rating;
     document.getElementById('address').innerHTML = restaurantsList[i].address;
-    document.getElementById('price').innerHTML = restaurantsList[i].price;
+    var price = document.getElementById('price');
+    price.innerHTML = restaurantsList[i].price;
+    if (price.innerHTML == 'undefined') {
+        price.innerHTML = 'Unavailable';
+    }
     var link = document.getElementById('website');
     link.innerHTML = restaurantsList[i].website;
     link.setAttribute("href", `${restaurantsList[i].website}`);
-
     if (restaurantsList[i].isClosed === true) {
         document.getElementById('is-closed').innerHTML = 'Currently Closed';
     } else {
         document.getElementById('is-closed').innerHTML = 'Currently Open';
     }
-    document.getElementById('cuisine').innerHTML = restaurantsList[i].cuisine;
+    restaurantsList[i].cuisineList = [];
+    for (let j = 0; j < restaurantsList[i].cuisine.length; j++) {
+        restaurantsList[i].cuisineList.push(restaurantsList[i].cuisine[j].name);
+    }
+    console.log(restaurantsList[i].cuisineList)
+    document.getElementById('cuisine').innerHTML = restaurantsList[i].cuisineList.join(', ');
     document.getElementById('distance').innerHTML = Math.round(restaurantsList[i].distance * 10) / 10 + " km";
     document.getElementById('description').innerHTML = restaurantsList[i].description;
 }
 
+//Adds restaurants to your search history
 function addToHistory() {
     var pastSearches = document.getElementById('past-searches');
     var past = current.cloneNode(true);

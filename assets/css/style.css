@@ -31,3 +31,12 @@ body {
 .modal-content p {
   font-size: 20px;
 }
+
+li {
+  font-size: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
