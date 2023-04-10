@@ -1,12 +1,18 @@
+body {
+  background-color: #A47E3B;
+ 
+}
+
 body, option {
-  font-family: 'Alkatra', cursive;
+  font-family: 'Alkatra', cursive;  
+  
 }
 
 
 
 select {
     font-family: 'Alkatra', cursive;
-    color: green;
+    color: #820000;
     width: 200px;
 }
 
@@ -40,3 +46,22 @@ li {
   margin: 5px;
 }
 
+#scroll {
+  margin:4px, 4px;
+  padding:4px;
+  width: 200px;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
+}
+
+
+
+#submit-button {
+  background-color: #820000;
+}
+
+#past-search {
+  border: solid black 1px;
+}
