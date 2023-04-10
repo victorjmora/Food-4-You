@@ -9,7 +9,7 @@ var zipcode = 0;
 var cuisineOptions = ['Anything', 'Asian', 'American', 'Italian', 'Mexican']
 var cuisineChoice = cuisineOptions[0];
 var cuisine = [];
-var modalCount = 0;
+var current = '';
 
 let map;
 
@@ -114,20 +114,30 @@ function createModals(i) {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, options);
     document.getElementById('name').innerHTML = restaurantsList[i].name;
-    var a = document.getElementById('image').setAttribute("src", `${restaurantsList[i].images}`);
-    console.log(a);
+    var image = document.getElementById('image');
+    image.setAttribute("src", `${restaurantsList[i].images}`);
+    image.style.height = '300px';
     document.getElementById('rating').innerHTML = restaurantsList[i].rating;
     document.getElementById('address').innerHTML = restaurantsList[i].address;
     document.getElementById('price').innerHTML = restaurantsList[i].price;
-    document.getElementById('website').innerHTML = restaurantsList[i].website;
+    var link = document.getElementById('website');
+    link.innerHTML = restaurantsList[i].website;
+    link.setAttribute("href", `${restaurantsList[i].website}`);
+
     if (restaurantsList[i].isClosed === true) {
         document.getElementById('is-closed').innerHTML = 'Currently Closed';
     } else {
         document.getElementById('is-closed').innerHTML = 'Currently Open';
     }
     document.getElementById('cuisine').innerHTML = restaurantsList[i].cuisine;
-    document.getElementById('distance').innerHTML = Math.round(restaurantsList[i].distance * 10) / 10 + "km";
+    document.getElementById('distance').innerHTML = Math.round(restaurantsList[i].distance * 10) / 10 + " km";
     document.getElementById('description').innerHTML = restaurantsList[i].description;
+}
+
+function addToHistory() {
+    var pastSearches = document.getElementById('past-searches');
+    var past = current.cloneNode(true);
+    pastSearches.appendChild(past);
 }
 
 //Displays the restaurant names in the 'Suggested' list
@@ -138,10 +148,11 @@ function displayNames() {
         var li = document.createElement('li');
         li.setAttribute("id", `${i}`)
         li.addEventListener('click', function(e) {
-            var button = e.target;
-            button.setAttribute("href", "#modal-init");
-            button.setAttribute("class", "modal-trigger");
+            current = e.target;
+            current.setAttribute("href", "#modal-init");
+            current.setAttribute("class", "modal-trigger");
             createModals(i);
+            addToHistory();
         })
         li.innerHTML = restaurantsList[i].name;
         ul.appendChild(li);
