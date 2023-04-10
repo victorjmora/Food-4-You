@@ -174,6 +174,69 @@ function displayNames() {
     }
 }
 
-setBoundaries();
 
 
+require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/portal/Portal",
+    "esri/widgets/BasemapGallery",
+    "esri/widgets/BasemapGallery/support/PortalBasemapsSource",
+    "esri/widgets/Expand"
+  ], function(
+    Map,
+    MapView,
+    Portal,
+    BasemapGallery,
+    PortalBasemapsSource,
+    Expand
+  ) {
+
+
+    const portal = new Portal();
+
+    // source for basemaps from a portal group
+    // containing basemaps with different projections
+    const source = new PortalBasemapsSource({
+      portal,
+      query: {
+        id: "bdb9d65e0b5c480c8dcc6916e7f4e099"
+      }
+    });
+
+
+    const map = new Map({
+      basemap: {
+        portalItem: {
+          id: "8d91bd39e873417ea21673e0fee87604" // nova basemap
+        }
+      }
+    });
+
+    // center the view over 48 states
+    const view = new MapView({
+      container: "viewDiv",
+      map: map,
+      center: [-100, 35],
+      zoom: 2,
+      constraints: {
+        snapToZoom: false
+      }
+    });
+    view.ui.add("srDiv", "top-right");
+
+    const bgExpand = new Expand({
+      view,
+      content: new BasemapGallery({ source, view }),
+      expandIconClass: "esri-icon-basemap"
+    });
+    view.ui.add(bgExpand, "top-right");
+
+    view.watch("spatialReference", ()=> {
+      document.getElementById("srDiv").innerHTML = `view.spatialReference.wkid = <b>${view.spatialReference.wkid}</b>`;
+    });
+  });
+
+  // everything below this is for the js for the map
+
+  setBoundaries();

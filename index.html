@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Group Project 1</title>
+
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap"
       rel="stylesheet"
@@ -22,6 +24,39 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
 
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.26/"></script>
+  <script>require([
+    "esri/config",
+     "esri/Map",
+     "esri/views/MapView"
+     
+   ], function (esriConfig,Map, MapView) {
+     esriConfig.apiKey = "AAPK69e19e224df24195adec2324ab7f22c4BNKP9DR-hF83-6RIxKYXldDqj3DcHnNNm3_YdWrxTHj-aurLM8BJjhqmpktk5Ztx";
+     const map = new Map("viewDiv", {
+       basemap: "topo" // Basemap layer
+     });
+     const view = new MapView({
+       map: map,
+       center: [-118.805, 34.027],
+       zoom: 13, // scale: 72223.819286
+       container: "viewDiv"
+       
+     });
+   });</script>
+  
+
+
   <body>
     <header class="amber center-align z-depth-3">
       <h1><i class="large material-icons">local_dining</i>Food and stuff</h1>
@@ -38,27 +73,28 @@
             placeholder="Zipcode"
             data-length="14"
           />
-          <button
-            id="submit-button"
-            class="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-          >
-            Submit
+
+          <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
+          
           </button>
 
           <div class="row amber">
             <section class="col s6">
               <h4>Past Searches</h4>
               <div id="scroll">
-                <ul id="past-searches"></ul>
-              </div>
+
+              <ul id="past-searches">
+              </ul>
+            </div>
+
             </section>
             <section class="col s6">
               <h4>Suggested</h4>
               <div id="scroll">
+
                 <ul id="suggested"></ul>
               </div>
+
             </section>
           </div>
         </div>
@@ -81,6 +117,7 @@
             <option value="3">Cost:</option>
           </select>
 
+
           <!-- Modal Structure -->
           <div id="modal-init" class="modal">
             <div class="modal-content">
@@ -102,6 +139,11 @@
             </div>
           </div>
         </div>
+
+        <!--Information Block-->
+        <section class="col s6" id="map-block"></section>
+          <span id="viewDiv">Map</span>
+        </section>
 
         <!--Information Block-->
         <section class="col s6" id="map-block"></section>
