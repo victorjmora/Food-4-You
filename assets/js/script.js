@@ -8,6 +8,8 @@ var restaurantsList = [];
 var zipcode = 0;
 var cuisineOptions = ['Anything', 'Asian', 'American', 'Italian', 'Mexican']
 var cuisineChoice = cuisineOptions[0];
+var cuisine = [];
+var modalCount = 0;
 
 let map;
 
@@ -68,29 +70,22 @@ const options = {
    }
 };
 
-function fetchAPI() {
-    fetch(link, options)
-        .then(response => response.json())
-        .catch(err => console.error(err));
-}
-
 //Stores API info in the 'info' variable in order to manipulate. Pushes each Restaurant object to the 'restaurants' array with data to be used in the modals
 async function storeInfo() {
-    info = await fetch(link, options).then(response => response.json())
+    info = await fetch(link, options).then(response => response.json()).catch(err => console.log(err));
     for (var i = 0; i < info.data.length; i++) {
         class Restaurant {
             constructor() {
                 this.name = info.data[i].name;
                 this.rating = info.data[i].rating;
                 this.address = info.data[i].address;
-                this.priceLevel = info.data[i].price_level;
+                this.price = info.data[i].price;
                 this.website = info.data[i].website;
                 this.isClosed = info.data[i].is_closed;
                 this.cuisine = info.data[i].cuisine;
                 this.description = info.data[i].description;
-                this.images = info.data[i].photo;
+                this.images = info.data[i].photo.images.original.url;
                 this.distance = info.data[i].distance;
-                this.cuisine = info.data[i].cuisine;
             }
         }
         if (cuisineChoice == cuisineOptions[0]) {
@@ -99,7 +94,7 @@ async function storeInfo() {
                 restaurantsList.push(restaurant);
             }
         } else if (info.data[i].cuisine != undefined) {
-            var cuisine = info.data[i].cuisine;
+            cuisine = info.data[i].cuisine;
             for (var j = 0; j < cuisine.length; j++) {
                 if (cuisine[j].name == cuisineChoice) {
                     var restaurant = new Restaurant;
@@ -111,7 +106,29 @@ async function storeInfo() {
         }
     }
     displayNames();
+    console.log(info.data);
 };
+
+//Creates a modal for displaying each of the Restaurant objects
+function createModals(i) {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+    document.getElementById('name').innerHTML = restaurantsList[i].name;
+    var a = document.getElementById('image').setAttribute("src", `${restaurantsList[i].images}`);
+    console.log(a);
+    document.getElementById('rating').innerHTML = restaurantsList[i].rating;
+    document.getElementById('address').innerHTML = restaurantsList[i].address;
+    document.getElementById('price').innerHTML = restaurantsList[i].price;
+    document.getElementById('website').innerHTML = restaurantsList[i].website;
+    if (restaurantsList[i].isClosed === true) {
+        document.getElementById('is-closed').innerHTML = 'Currently Closed';
+    } else {
+        document.getElementById('is-closed').innerHTML = 'Currently Open';
+    }
+    document.getElementById('cuisine').innerHTML = restaurantsList[i].cuisine;
+    document.getElementById('distance').innerHTML = Math.round(restaurantsList[i].distance * 10) / 10 + "km";
+    document.getElementById('description').innerHTML = restaurantsList[i].description;
+}
 
 //Displays the restaurant names in the 'Suggested' list
 function displayNames() {
@@ -119,6 +136,13 @@ function displayNames() {
     ul.innerHTML = '';
     for (let i = 0; i < restaurantsList.length; i++) {
         var li = document.createElement('li');
+        li.setAttribute("id", `${i}`)
+        li.addEventListener('click', function(e) {
+            var button = e.target;
+            button.setAttribute("href", "#modal-init");
+            button.setAttribute("class", "modal-trigger");
+            createModals(i);
+        })
         li.innerHTML = restaurantsList[i].name;
         ul.appendChild(li);
     }
@@ -127,14 +151,6 @@ function displayNames() {
         li.innerHTML = 'ERROR: Could not find any matching restaurants near you';
         ul.appendChild(li);
     }
-}
-
-//Creates a modal for displaying each of the Restaurant objects
-function createModals() {
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.modal');
-        var instances = M.Modal.init(elems, options);
-    });
 }
 
 setBoundaries();
