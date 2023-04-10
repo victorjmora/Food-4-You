@@ -1,89 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Project 1</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./assets/css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  </head>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.26/"></script>
+  <script>require([
+    "esri/config",
+     "esri/Map",
+     "esri/views/MapView"
+     
+   ], function (esriConfig,Map, MapView) {
+     esriConfig.apiKey = "AAPK69e19e224df24195adec2324ab7f22c4BNKP9DR-hF83-6RIxKYXldDqj3DcHnNNm3_YdWrxTHj-aurLM8BJjhqmpktk5Ztx";
+     const map = new Map("viewDiv", {
+       basemap: "topo" // Basemap layer
+     });
+     const view = new MapView({
+       map: map,
+       center: [-118.805, 34.027],
+       zoom: 13, // scale: 72223.819286
+       container: "viewDiv"
+       
+     });
+   });</script>
+  
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Group Project 1</title>
-  <link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
-  <link type="text/css" rel="stylesheet" href="./assets/css/materialize.min.css" media="screen,projection" />
-  <link rel="stylesheet" href="./assets/css/style.css"/>
-</head>
+  <body>
+    <header class="amber center-align z-depth-3">
+      <h1><i class="large material-icons">local_dining</i>Food and stuff</h1>
+      <h3>Finding food easier than ever</h3>
+    </header>
 
-<body>
-  <header class="amber center-align">
-    <h1>Food4You</h1>
-    <h3>Finding food easier than ever</h3>
-  </header>
     <main>
- 
+      <section class="row amber z-depth-3">
+        <div class="col s3">
+          <h4 id="zip">Enter a Zipcode</h4>
+          <input
+            id="input_text"
+            type="text"
+            placeholder="Zipcode"
+            data-length="14"
+          />
+          <button id="submit-button" class="btn waves-effect waves-light" type="submit" name="action">Submit
+          </button>
 
-    <section class="leftSide amber darken-2">
-      <section class="box amber darken-1">
-
-        <section class="row amber">
-          <div class="col s3 amber lighten-1 input-field">
-            <h4  id="zip">Enter a Zipcode</h4>
-            <input id="input_text" type="text" placeholder="Zipcode" data-length="14" />
-           </div>
-
-          <div class="col s3 amber lighten-1">
-            <h4 id="foodType">Select Food Type:</h4>
-            <select class="browser-default">
-              <option value="" disabled selected>Select Food Type</option>
-              <option value="1">Food 1</option>
-              <option value="2">Food 2</option>
-              <option value="3">Food 3</option>
-            </select>
+          <div class="row amber">
+            <section class="col s6">
+              <h4>Past Searches</h4>
+              <div id="scroll">
+              <ul id="past-searches">
+              </ul>
+            </div>
+            </section>
+            <section class="col s6">
+              <h4>Suggested</h4>
+              <div id="scroll">
+              <ul id="suggested">
+              </ul>
+            </div>
+            </section>
           </div>
+        </div>
 
-        </section> <!--Food and Zip contain-->
+        <div class="col s3">
+          <h4 id="foodType">Select Options:</h4>
+          <select id="test" class="browser-default">
+            <option value="" disabled selected>Select Cuisine</option>
+            <option value="0">Anything</option>
+            <option value="1">Asian</option>
+            <option value="2">American</option>
+            <option value="3">Italian</option>
+            <option value="4">Mexican</option>
+          </select>
+          <br />
+          <select class="browser-default">
+            <option value="" disabled selected>Sort By:</option>
+            <option value="1">Rating:</option>
+            <option value="2">Distance:</option>
+            <option value="3">Cost:</option>
+          </select>
 
-        <section class="row">
-          
-          <h4 class="col s3 amber" id="pastSearches">Past Searches</h4>
-          <h4 class="col s3 amber lighten-1" id="suggested">Suggested Restaurants</h4>
+          <!-- Modal Structure -->
+          <div id="modal-init" class="modal">
+            <div class="modal-content">
+              <h4 id="name">Restaurant Name</h4>
+              <img id="image" src="" />
+              <p>Rating: <span id="rating"></span></p>
+              <p>Address: <span id="address"></span></p>
+              <p>Price: <span id="price"></span></p>
+              <p>Website: <a id="website" target="_blank"></a></p>
+              <p>Open or Closed: <span id="is-closed"></span></p>
+              <p>Cuisine: <span id="cuisine"></span></p>
+              <p>Distance: <span id="distance"></span></p>
+              <p>Description: <span id="description"></span></p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+                >OK</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!--Information Block-->
+        <section class="col s6" id="map-block"></section>
+          <span id="viewDiv">Map</span>
         </section>
-      </section>
-
-      <section id="pastSearches" class="amber darken-1">
-        <h3>Past Searches</h3>
-        <ul id="searchItems">
-
-        </ul>
-      </section>
-      <section id="suggestedRestaurants" ckass="amber darken-1">
-        <h4>Suggested Restaurants:</h4>
-            <select class="browser-default">
-              <option value="" disabled selected>Sort By:</option>
-              <option value="1">Rating</option>
-              <option value="2">Distance</option>
-              <option value="3">Currently Open</option>
-              <option value="4">Cost</option>
-            </select>
-        <ul id="restaurantList">
-
-        </ul>
 
       </section>
-    </section>
-    <section class="rightSide amber darken-2">
-      <section id="map" class="row">
-        <section class="col s2 amber lighten-1">
-
-        </section>
-        <section class="col s6 amber lighten-2">
-
-        </section>
-      </section>
-      <section id="apiInfo" class="amber">
-
-      </section>
- 
-    </section>
-  </main>
-  <script type="text/javascript" src="./assets/js/materialize.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-
+      <!--Main Row-->
+    </main>
+    <script
+      type="text/javascript"
+      src="./assets/js/materialize.min.js"
+    ></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
