@@ -4,7 +4,8 @@ body {
 }
 
 body, option {
-  font-family: 'Alkatra', cursive;
+  font-family: 'Alkatra', cursive;  
+  
 }
 
 
@@ -37,6 +38,11 @@ html,
  * Always set the map height explicitly to define the size of the div element
  * that contains the map. 
  */
+
+#map {
+  height: 100%;
+}
+
 
 /* 
  * Optional: Makes the sample page fill the window. 
@@ -75,3 +81,8 @@ li {
 #submit-button {
   background-color: #820000;
 }
+
+#past-search {
+  border: solid black 1px;
+}
+
