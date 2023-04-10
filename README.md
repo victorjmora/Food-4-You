@@ -20,4 +20,7 @@ When I come back to the website
 Then I will see my search history of past restaurants
 
 ## API's to be used 
-Travel Advisor
+https://rapidapi.com/apidojo/api/travel-advisor
+https://js.arcgis.com/4.26/esri
+
+## Website 
