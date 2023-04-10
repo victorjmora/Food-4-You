@@ -19,6 +19,12 @@ Then it will be locally stored
 When I come back to the website
 Then I will see my search history of past restaurants
 
+## Contributors
+Anurag Mishra
+Logan Linares
+William(AJ) Faries
+Victor Mora
+
 ## API's to be used 
 - https://rapidapi.com/apidojo/api/travel-advisor
 
