@@ -65,7 +65,7 @@ function setPositionCurrent(position) {
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '14d736a9c0msh4f4b723e2123446p1046fcjsnfe7ad3e482fc',
+        'X-RapidAPI-Key': 'e5a1da6f1dmsh4d9c03a6224f318p1d8aeajsn756ddd93fa2a',
         'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
    }
 };
