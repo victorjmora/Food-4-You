@@ -4,6 +4,10 @@
 
 This application is being built for all those foodies out there looking to explore different options for some grub int their area. This app will let you input your zipcode and will find you recommendations based on your filters and criteria.
 
+- Motivation for this was listening to people being tired of taking so long to look for a place to eat instea of a very simple way to fascilitate the process.
+- We built this project mainly because our jobs as developers are to make life easier for people around us nad that is what makes it worth while, that this application will help foodies out there look for a place and be able to satisfy their cravingss while saving time.
+- we learned from this project that using an API that has a map and that part was challenging and also the converting zipcode to actual latitude and longitude.
+
 ## Acceptance Criteria
 
 When I enter the website
@@ -24,6 +28,9 @@ Then I will see my search history of past restaurants
 - Logan Linares
 - William(AJ) Faries
 - Victor Mora
+
+## Framework
+- www.https://materializecss.com
 
 ## API's to be used 
 - https://rapidapi.com/apidojo/api/travel-advisor
