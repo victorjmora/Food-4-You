@@ -30,12 +30,12 @@ Then I will see my search history of past restaurants
 - Victor Mora
 
 ## Framework
-- www.https://materializecss.com
+- https://materializecss.com/
 
 ## API's to be used 
 - https://rapidapi.com/apidojo/api/travel-advisor
 
-- https://js.arcgis.com/4.26/esri
+- https://developers.arcgis.com/api-keys/55858941e63e426b95dcb82bd3cf5332
 
 ## Website 
 https://victorjmora.github.io/Food-4-You/
