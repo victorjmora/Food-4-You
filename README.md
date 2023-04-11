@@ -40,4 +40,4 @@ Then I will see my search history of past restaurants
 ## Website 
 https://victorjmora.github.io/Food-4-You/
 
-<img width="1440" alt="Screen Shot 2023-04-10 at 7 21 39 PM" src="https://user-images.githubusercontent.com/124754739/231018432-42ef8061-71fb-4452-b31b-74dae055f1c0.png">
+<img width="1440" alt="Screen Shot 2023-04-10 at 7 21 39 PM" src="./assets/images/food4you.JPG">
